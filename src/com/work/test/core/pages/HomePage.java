@@ -63,7 +63,6 @@ public class HomePage extends PageBase {
 	
 	public void clickPostButton() {
 //		WebDriverWait wait = new WebDriverWait(driver, 10);
-//		wait.until(ExpectedConditions.visibilityOf(postButton));
 //		wait.until(ExpectedConditions.elementToBeClickable(By.id(POST_BUTTON_BY_ID)));		
 		 new FluentWait<WebDriver>(driver).
          withTimeout(10, TimeUnit.SECONDS).
@@ -78,11 +77,10 @@ public class HomePage extends PageBase {
          );
 		 
 		 postButton.click();
-		}
+	}
 			
 			
-		
-		
+
 		
 	
 	
