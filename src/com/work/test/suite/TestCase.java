@@ -76,7 +76,7 @@ public class TestCase {
 	public void shouldLoginSuccessfully() {
 		LandingPage landingPage = new LandingPage(driver);
 		LoginPage loginPage = landingPage.goToLoginPage();
-		loginPage.login("zliang@mrs.com", "Test1234");
+		loginPage.login("dummy@dummy.com", "dummypw");
 	}
 	
 	@Test	
@@ -92,7 +92,7 @@ public class TestCase {
 	public void shouldPostNewText() {
 		LandingPage landingPage = new LandingPage(driver);
 		LoginPage loginPage = landingPage.goToLoginPage();
-		HomePage homePage = loginPage.login("zliang@mrs.com", "Test1234");
+		HomePage homePage = loginPage.login("dummy@dummy.com", "dummypw");
 		homePage.clickUpdateRaidoBtn();
 		homePage.setUpdateMessage("new post 123");
 		homePage.clickPostButton();		
@@ -103,7 +103,7 @@ public class TestCase {
 	public void shouldHaveMultiplePosts() {
 		LandingPage landingPage = new LandingPage(driver);
 		LoginPage loginPage = landingPage.goToLoginPage();
-		HomePage homePage = loginPage.login("zliang@mrs.com", "Test1234");
+		HomePage homePage = loginPage.login("dummy@dummy.com", "dummypw");
 		
 		System.out.println(homePage.getPosts().size());
 		assertTrue(homePage.getPosts().size() > 2);
