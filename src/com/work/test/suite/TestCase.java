@@ -26,10 +26,7 @@ public class TestCase {
 	@Before
 	public void setUp() {
 		driver = new FirefoxDriver();
-		driver.manage().window().maximize();
-			
-//		System.setProperty("webdriver.chrome.driver", "C:\\qa-tools\\chrome\\chromedriver.exe");		
-//		driver = new ChromeDriver();		
+		driver.manage().window().maximize();	
 	}
 	
 	@After
@@ -98,39 +95,5 @@ public class TestCase {
 		System.out.println(homePage.getPosts().size());
 		assertTrue(homePage.getPosts().size() > 2);
 	}
-//	
-//	@Test
-//	public void shouldCount() {
-//		System.out.println(countOccurance("1234123312", "12"));
-//		
-//	}
-//	
-//	private int countOccurance(String input, String check) {
-//		
-//		if (input == null || input.length() == 0) return 0;
-//		if (check == null || check.length() == 0) return 0;
-//		if (check.length() > input.length())      return 0;
-//		
-//		char[] inputC = input.toCharArray();
-//		char[] checkC = check.toCharArray();
-//		
-//		int count = 0;
-//		int j = 0;
-//		
-//		for (int i = 0; i < inputC.length; i++) {
-//			if (inputC[i] == checkC[j]) {
-//				j++;
-//			} else {
-//				j = 0;
-//			}
-//			
-//			if (j == checkC.length -1) { // match found
-//				count++;
-//				j=0;
-//			}
-//		}		
-//		
-//		return count;		
-//	}
 
 }

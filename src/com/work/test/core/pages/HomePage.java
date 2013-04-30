@@ -27,14 +27,17 @@ public class HomePage extends PageBase {
 	final String url = "https://app.work.com/#home";
 	final String pageName = "HomePage";
 	
-	private final  String POST_BUTTON_BY_ID = "7290e7453188e16a"; 
+	private final String POST_BUTTON_BY_ID = "7290e7453188e16a";
+	private final String POST_TTITLE_BY_XPATH = "//div[@id='7290e7454652a2fb']/div/input";
+	private final String UPDATE_TEXT_BY_XPATH = "//textarea[@id='AbstractGeneralMessageForm-text-area']";
+	private final String UPDATE_RADIO_BTN_BY_XPATH = "//span[@id='7290e7455402f836']/input";
+	private final String POST_DIV = "5496d56413e50b75";
 	
-	//
-	@FindBy(how=How.XPATH, using="//div[@id='7290e7454652a2fb']/div/input")	WebElement postTitle;
-	@FindBy(how=How.XPATH, using="//textarea[@id='AbstractGeneralMessageForm-text-area']")	WebElement updateMessageTextArea;
-	@FindBy(how=How.ID, using=POST_BUTTON_BY_ID)	WebElement postButton;
-	@FindBy(how=How.ID, using="7290e7452416208f")	WebElement div;
-	@FindBy(how=How.XPATH, using ="//span[@id='7290e7455402f836']/input") WebElement updateRadioBtn;	
+	
+	@FindBy(how=How.XPATH, using=POST_TTITLE_BY_XPATH)	     WebElement postTitle;
+	@FindBy(how=How.XPATH, using=UPDATE_TEXT_BY_XPATH)	     WebElement updateMessageTextArea;
+	@FindBy(how=How.ID,    using=POST_BUTTON_BY_ID)	         WebElement postButton;
+	@FindBy(how=How.XPATH, using=UPDATE_RADIO_BTN_BY_XPATH)  WebElement updateRadioBtn;	
 	
 	
 	public HomePage(WebDriver driver) {
@@ -62,52 +65,32 @@ public class HomePage extends PageBase {
 	}
 	
 	public void clickPostButton() {
-//		WebDriverWait wait = new WebDriverWait(driver, 10);
-//		wait.until(ExpectedConditions.elementToBeClickable(By.id(POST_BUTTON_BY_ID)));		
 		 new FluentWait<WebDriver>(driver).
          withTimeout(10, TimeUnit.SECONDS).
          pollingEvery(100,TimeUnit.MILLISECONDS).
          until(new Function<WebDriver, Boolean>() {
              @Override
              public Boolean apply(WebDriver driver) {
-//                 return element.getText().endsWith("04");
-            	 return true;
+                 return driver.findElement(By.id(POST_BUTTON_BY_ID)).isEnabled();            	 
              }
          }
          );
 		 
 		 postButton.click();
 	}
-			
-			
-
-		
-	
 	
 	public void clickUpdateRaidoBtn() {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='7290e7455402f836']/input")));	
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(UPDATE_RADIO_BTN_BY_XPATH)));	
 		updateRadioBtn.click();
 	}
 	
 	public List<WebElement> getPosts() {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("5496d56413e50b75")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(POST_DIV)));
 		
-		return driver.findElements(By.id("5496d56413e50b75"));
-		
-		
-//		String xpathPattern = "//div[@id='5496d5641f973938']/div/div[1]/table/tbody/tr/td[2]/div/div[3]/div[2]/div[3]/div/div[2]/div/div/div";
-//		WebDriverWait wait = new WebDriverWait(driver, 10);
-//		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("div#5496d56413e50b75.GJBBPSCB0E"))));
-//		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("1ee3e5ab6b8bf940"))));
-//		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpathPattern))));
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathPattern)));
-	
-//		return driver.findElements(By.cssSelector("div#5496d56413e50b75.GJBBPSCB0E"));
-//		return driver.findElements(By.id("1ee3e5ab6b8bf940"));
-//		return driver.findElements(By.xpath(xpathPattern));
-		
+		return driver.findElements(By.id(POST_DIV));
+
 	}
 	
 }
